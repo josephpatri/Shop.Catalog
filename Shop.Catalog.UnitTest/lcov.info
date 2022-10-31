@@ -1,4 +1,4 @@
-SF:d:\Proyectos\ShopMicroservices\Shop\Shop.Catalog\Shop.Catalog.Service\Extensions\Mappers.cs
+SF:d:\Proyectos\ShopServices\Shop.Catalog\Shop.Catalog.Service\Extensions\Mappers.cs
 FN:8,Shop.Catalog.Service.Dtos.ItemDto Shop.Catalog.Service.Mappers::AsDto(Shop.Catalog.Service.Entities.Item)
 FNDA:0,Shop.Catalog.Service.Dtos.ItemDto Shop.Catalog.Service.Mappers::AsDto(Shop.Catalog.Service.Entities.Item)
 DA:9,0
@@ -11,7 +11,7 @@ BRH:0
 FNF:1
 FNH:0
 end_of_record
-SF:d:\Proyectos\ShopMicroservices\Shop\Shop.Catalog\Shop.Catalog.Service\Entities\Item.cs
+SF:d:\Proyectos\ShopServices\Shop.Catalog\Shop.Catalog.Service\Entities\Item.cs
 FN:6,System.Guid Shop.Catalog.Service.Entities.Item::get_Id()
 FNDA:0,System.Guid Shop.Catalog.Service.Entities.Item::get_Id()
 DA:7,0
@@ -34,7 +34,7 @@ BRH:0
 FNF:5
 FNH:0
 end_of_record
-SF:d:\Proyectos\ShopMicroservices\Shop\Shop.Catalog\Shop.Catalog.Service\Dtos\Dtos.cs
+SF:d:\Proyectos\ShopServices\Shop.Catalog\Shop.Catalog.Service\Dtos\Dtos.cs
 FN:5,System.Guid Shop.Catalog.Service.Dtos.ItemDto::get_Id()
 FNDA:0,System.Guid Shop.Catalog.Service.Dtos.ItemDto::get_Id()
 DA:6,0
@@ -51,7 +51,7 @@ BRH:0
 FNF:3
 FNH:0
 end_of_record
-SF:d:\Proyectos\ShopMicroservices\Shop\Shop.Catalog\Shop.Catalog.Service\Controllers\ItemsController.cs
+SF:d:\Proyectos\ShopServices\Shop.Catalog\Shop.Catalog.Service\Controllers\ItemsController.cs
 FN:19,System.Void Shop.Catalog.Service.Controllers.ItemsController::.ctor(Shop.Common.IRepository`1<Shop.Catalog.Service.Entities.Item>,MassTransit.IPublishEndpoint)
 FNDA:0,System.Void Shop.Catalog.Service.Controllers.ItemsController::.ctor(Shop.Common.IRepository`1<Shop.Catalog.Service.Entities.Item>,MassTransit.IPublishEndpoint)
 DA:20,0
