@@ -15,17 +15,12 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- task: NuGetAuthenticate@0
-  inputs:
-    nuGetServiceConnections: 'Shop.Common'
-- task: NuGetToolInstaller@1  
-
 - task: NuGetCommand@2
   inputs:
-    restoreSolution: '$(solution)'
+    command: 'restore'
+    restoreSolution: '**/*.sln'
     feedsToUse: 'config'
     nugetConfigPath: './NuGet.Config'
-    externalFeedCredentials: 'Shop.Common'
 
 - task: VSBuild@1
   inputs:
