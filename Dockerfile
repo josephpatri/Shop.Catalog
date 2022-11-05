@@ -3,7 +3,6 @@ WORKDIR /app
 COPY *.sln .
 COPY Shop.Catalog.Service/*.csproj ./Shop.Catalog.Service/
 COPY Shop.Catalog.UnitTest/*.csproj ./Shop.Catalog.UnitTest/
-COPY ./NuGet.Config ./nuget.config
 
 ARG PAT
 
@@ -13,7 +12,7 @@ ENV VSS_NUGET_EXTERNAL_FEED_ENDPOINTS '{"endpointCredentials":[{"endpoint":"http
 
 # Get and install the Artifact Credential provider
 RUN wget -O - https://raw.githubusercontent.com/Microsoft/artifacts-credprovider/master/helpers/installcredprovider.sh  | bash
-RUN dotnet restore --interactive
+RUN dotnet restore --interactive -s https://pkgs.dev.azure.com/josephville12/_packaging/Commons/nuget/v3/index.json
 
 # copy full solution over
 COPY . .
