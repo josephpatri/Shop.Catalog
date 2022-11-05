@@ -1,15 +1,21 @@
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-
-ARG Nuget_CustomFeedUserName
-ARG Nuget_CustomFeedPassword
-
 WORKDIR /app
 COPY *.sln .
 COPY Shop.Catalog.Service/*.csproj ./Shop.Catalog.Service/
 COPY Shop.Catalog.UnitTest/*.csproj ./Shop.Catalog.UnitTest/
-COPY ./Shop.Catalog.Service/NuGet.Config ./nuget.config
 
-RUN dotnet restore --interactive ./Shop.Catalog.Service/Shop.Catalog.Service.csproj
+ARG PAT
+
+# Set environment variables
+ENV NUGET_CREDENTIALPROVIDER_SESSIONTOKENCACHE_ENABLED true
+ENV VSS_NUGET_EXTERNAL_FEED_ENDPOINTS '{"endpointCredentials":[{"endpoint":"https://pkgs.dev.azure.com/josephville12/_packaging/Commons/nuget/v3/index.json","username":"josephville12","password":"'${PAT}'"}]}'
+
+# Get and install the Artifact Credential provider
+RUN wget -O - https://raw.githubusercontent.com/Microsoft/artifacts-credprovider/master/helpers/installcredprovider.sh  | bash
+RUN dotnet restore -s "https://pkgs.dev.azure.com/josephville12/_packaging/Commons/nuget/v3/index.json" -s "https://api.nuget.org/v3/index.json"
+
+RUN dotnet restore --interactive
+
 # copy full solution over
 COPY . .
 RUN dotnet build "./Shop.Catalog.Service/Shop.Catalog.Service.csproj"
