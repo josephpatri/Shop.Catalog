@@ -1,13 +1,10 @@
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-
-ARG Nuget_CustomFeedUserName
-ARG Nuget_CustomFeedPassword
-
 WORKDIR /app
 COPY *.sln .
 COPY Shop.Catalog.Service/*.csproj ./Shop.Catalog.Service/
 COPY Shop.Catalog.UnitTest/*.csproj ./Shop.Catalog.UnitTest/
 COPY ./Shop.Catalog.Service/NuGet.Config ./nuget.config
+COPY ./Shop.Catalog.Service/NuGet.Config /Shop.Catalog.Service/NuGet.config
 
 RUN dotnet restore --interactive ./Shop.Catalog.Service/Shop.Catalog.Service.csproj
 # copy full solution over
