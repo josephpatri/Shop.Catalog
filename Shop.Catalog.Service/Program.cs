@@ -9,7 +9,9 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        var builder = WebApplication.CreateBuilder(args);
+        var builder = WebApplication.CreateBuilder(args);        
+
+        const string AllowedOriginSettings = "AllowedOrigin";
 
         // Add services to the container.
 
@@ -32,12 +34,12 @@ internal class Program
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();
-            app.UseSwaggerUI();
-        }
+            app.UseSwaggerUI();            
+        }        
 
         app.UseCors(cors =>
         {
-            cors.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+            cors.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
         });
 
         //app.UseHttpsRedirection();
