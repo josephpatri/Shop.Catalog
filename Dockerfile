@@ -6,15 +6,11 @@ COPY Shop.Catalog.UnitTest/*.csproj ./Shop.Catalog.UnitTest/
 
 ARG PAT
 
-# Get and install the Artifact Credential provider
-RUN wget https://raw.githubusercontent.com/Microsoft/artifacts-credprovider/master/helpers/installcredprovider.sh \
-    && chmod +x installcredprovider.sh \
-    && ./installcredprovider.sh
-
-# Set environment variables
-ENV NUGET_CREDENTIALPROVIDER_SESSIONTOKENCACHE_ENABLED true
 ENV DOTNET_SYSTEM_NET_HTTP_USESOCKETSHTTPHANDLER=0
-ENV VSS_NUGET_EXTERNAL_FEED_ENDPOINTS '{"endpointCredentials":[{"endpoint":"https://pkgs.dev.azure.com/josephville12/_packaging/Commons/nuget/v3/index.json","username":"josephville12","password":"'${nuget_pat}'"}]}'
+ENV NUGET_CREDENTIALPROVIDER_SESSIONTOKENCACHE_ENABLED true
+ENV VSS_NUGET_EXTERNAL_FEED_ENDPOINTS {\"endpointCredentials\": [{\"endpoint\":\"https://pkgs.dev.azure.com/josephville12/_packaging/Commons/nuget/v3/index.json\", \"username\":\"josephville12\", \"password\":\"${PAT}\"}]}
+RUN wget -qO- https://raw.githubusercontent.com/Microsoft/artifacts-credprovider/master/helpers/installcredprovider.sh | bash
+
 RUN dotnet restore . -s "https://pkgs.dev.azure.com/josephville12/_packaging/Commons/nuget/v3/index.json" -s "https://api.nuget.org/v3/index.json"
 
 # copy full solution over
